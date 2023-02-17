@@ -1,24 +1,21 @@
 import React from "react";
 
-const Card = (data) => {
-  const { collected, onClick } = data;
-  console.log(onClick);
-  const className = collected
-    ? "rounded-t-lg grayscale-0"
-    : "rounded-t-lg grayscale";
+const Card = (props) => {
+  const { art, ability, cid } = props.props;
+  const { toggle } = props;
 
   return (
     <div className="w-40 h-64 mb-10 flex-col ">
       <img
-        className={className}
-        src={data.data.art}
+        className="rounded-b"
+        src={art}
         alt=""
         loading="lazy"
-        onClick={onClick}
+        onClick={() => toggle(cid)}
       />
       <div className="p-2 mt-2 items-center justify-center">
-        <p className=" font-light text-xs text-white dark:text-gray-400  pl-6">
-          {data.data.ability}
+        <p className=" font-light text-sm text-white dark:text-gray-400  pl-6">
+          {ability}
         </p>
       </div>
     </div>

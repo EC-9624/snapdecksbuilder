@@ -1,17 +1,15 @@
 import Card from "@/components/card";
 import Header from "@/components/header";
 import Head from "next/head";
+import React, { useState } from "react";
 import CardsData from "./api/JsonCardsData";
-import { useState } from "react";
 
 export default function Home() {
-  //state
   const [collected, setCollected] = useState(false);
 
-  const handleClick = () => {
-    setCollected(!collected);
-  };
-
+  function toggle(cid) {
+    console.log(cid, collected);
+  }
   return (
     <div className=" bg-slate-800 min-w-full min-h-screen">
       <Head>
@@ -25,12 +23,15 @@ export default function Home() {
       </h2>
       <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
         {starter.map((c) => (
-          <>
-            <Card data={c} collected={collected} onToggle={handleClick}></Card>
-          </>
+          <Card
+            props={c}
+            key={c.cid}
+            toggle={toggle}
+            collected={collected}
+          ></Card>
         ))}
       </div>
-      <h2 className="text-white text-4xl font-extrabold m-4 pl-12">
+      {/* <h2 className="text-white text-4xl font-extrabold m-4 pl-12">
         Pool 1 Cards
       </h2>
       <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
@@ -84,7 +85,7 @@ export default function Home() {
             <Card data={c} collected={collected} onClick={handleClick}></Card>
           </>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
