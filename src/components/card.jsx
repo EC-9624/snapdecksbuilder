@@ -3,10 +3,15 @@ import React from "react";
 const Card = (data) => {
   console.log(data);
   return (
-    <div className="w-56 h-96 bg-slate-500 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <img className="rounded-t-lg" src={data.data.art} alt="" />
-      <div>
-        <p className="mb-3 font-normal text-gray-900 dark:text-gray-400 text-center">
+    <div className="w-40 h-64 mb-10 flex-col">
+      <img
+        className="rounded-t-lg grayscale"
+        src={data.data.art}
+        alt=""
+        loading="lazy"
+      />
+      <div className="p-2 mt-2 items-center justify-center">
+        <p className=" font-light text-xs text-white dark:text-gray-400  pl-6">
           {data.data.ability}
         </p>
       </div>

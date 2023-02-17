@@ -915,7 +915,7 @@
     "type": "Character",
     "art": "https://marvelsnapzone.com/wp-content/themes/blocksy-child/assets/media/cards/the-collector.webp?v=25",
     "url": "https://marvelsnapzone.com/cards/the-collector",
-    "ability": "",
+    "ability": "When a card enters your hand from anywhere (except your deck), +1 Power.",
     "cost": "2",
     "power": "1",
     "carddefid": "TheCollector",

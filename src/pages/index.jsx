@@ -2,8 +2,16 @@ import Card from "@/components/card";
 import Header from "@/components/header";
 import Head from "next/head";
 import CardsData from "./api/JsonCardsData";
+import { useState } from "react";
 
 export default function Home() {
+  //state
+  const [collected, setCollected] = useState(false);
+
+  const handleClick = () => {
+    setCollected(!collected);
+  };
+
   return (
     <div className=" bg-slate-800 min-w-full min-h-screen">
       <Head>
@@ -12,13 +20,91 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header></Header>
-      <div className="cardContainer flex flex-wrap place-content-start  h-full w-full">
-        {CardsData.map((c) => (
+      <h2 className="text-white text-4xl font-extrabold m-4 pl-12">
+        Starter Cards
+      </h2>
+      <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
+        {starter.map((c) => (
           <>
-            <Card data={c}></Card>
+            <Card data={c} collected={collected} onClick={setCollected}></Card>
+          </>
+        ))}
+      </div>
+      <h2 className="text-white text-4xl font-extrabold m-4 pl-12">
+        Pool 1 Cards
+      </h2>
+      <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
+        {pool_1.map((c) => (
+          <>
+            <Card data={c} collected={collected} onClick={setCollected}></Card>
+          </>
+        ))}
+      </div>
+      <h2 className="text-white text-4xl font-extrabold m-4 pl-12">
+        Pool 2 Cards
+      </h2>
+      <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
+        {pool_2.map((c) => (
+          <>
+            <Card data={c} collected={collected} onClick={setCollected}></Card>
+          </>
+        ))}
+      </div>
+
+      <h2 className="text-white text-4xl font-extrabold m-5 pl-12">
+        Pool 3 Cards
+      </h2>
+
+      <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
+        {pool_3.map((c) => (
+          <>
+            <Card data={c} collected={collected} onClick={setCollected}></Card>
+          </>
+        ))}
+      </div>
+
+      <h2 className="text-white text-4xl font-extrabold m-5 pl-12">
+        Pool 4 Cards
+      </h2>
+
+      <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
+        {pool_4.map((c) => (
+          <>
+            <Card data={c} collected={collected} onClick={setCollected}></Card>
+          </>
+        ))}
+      </div>
+
+      <h2 className="text-white text-4xl font-extrabold m-5 pl-12">
+        Pool 5 Cards
+      </h2>
+      <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
+        {pool_5.map((c) => (
+          <>
+            <Card data={c} collected={collected} onClick={setCollected}></Card>
           </>
         ))}
       </div>
     </div>
   );
 }
+
+//cread filtered list
+const pool_1 = CardsData.filter((c) => {
+  return c.source_slug === "pool-1";
+});
+const pool_2 = CardsData.filter((c) => {
+  return c.source_slug === "pool-2";
+});
+const pool_3 = CardsData.filter((c) => {
+  return c.source_slug === "pool-3";
+});
+const pool_4 = CardsData.filter((c) => {
+  return c.source_slug === "pool-4";
+});
+const pool_5 = CardsData.filter((c) => {
+  return c.source_slug === "pool-5";
+});
+const starter = CardsData.filter((c) => {
+  return c.source_slug === "starter-card";
+});
