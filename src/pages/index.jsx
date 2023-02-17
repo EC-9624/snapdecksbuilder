@@ -26,7 +26,7 @@ export default function Home() {
       <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
         {starter.map((c) => (
           <>
-            <Card data={c} collected={collected} onClick={setCollected}></Card>
+            <Card data={c} collected={collected} onToggle={handleClick}></Card>
           </>
         ))}
       </div>
@@ -36,7 +36,7 @@ export default function Home() {
       <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
         {pool_1.map((c) => (
           <>
-            <Card data={c} collected={collected} onClick={setCollected}></Card>
+            <Card data={c} collected={collected} onToggle={handleClick}></Card>
           </>
         ))}
       </div>
@@ -46,7 +46,7 @@ export default function Home() {
       <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
         {pool_2.map((c) => (
           <>
-            <Card data={c} collected={collected} onClick={setCollected}></Card>
+            <Card data={c} collected={collected} onToggle={handleClick}></Card>
           </>
         ))}
       </div>
@@ -58,7 +58,7 @@ export default function Home() {
       <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
         {pool_3.map((c) => (
           <>
-            <Card data={c} collected={collected} onClick={setCollected}></Card>
+            <Card data={c} collected={collected} onToggle={handleClick}></Card>
           </>
         ))}
       </div>
@@ -70,7 +70,7 @@ export default function Home() {
       <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
         {pool_4.map((c) => (
           <>
-            <Card data={c} collected={collected} onClick={setCollected}></Card>
+            <Card data={c} collected={collected} onToggle={handleClick}></Card>
           </>
         ))}
       </div>
@@ -81,7 +81,7 @@ export default function Home() {
       <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
         {pool_5.map((c) => (
           <>
-            <Card data={c} collected={collected} onClick={setCollected}></Card>
+            <Card data={c} collected={collected} onClick={handleClick}></Card>
           </>
         ))}
       </div>
