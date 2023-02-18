@@ -5,11 +5,28 @@ import React, { useState } from "react";
 import CardsData from "./api/JsonCardsData";
 
 export default function Home() {
-  const [collected, setCollected] = useState(false);
+  //cards state
+  const [cards, setCards] = useState(allCardsdata);
 
+  const pool_1 = cards.filter((c) => c.source_slug === "pool-1");
+  const pool_2 = cards.filter((c) => c.source_slug === "pool-2");
+  const pool_3 = cards.filter((c) => c.source_slug === "pool-3");
+  const pool_4 = cards.filter((c) => c.source_slug === "pool-4");
+  const pool_5 = cards.filter((c) => c.source_slug === "pool-5");
+  const starter = cards.filter((c) => c.source_slug === "starter-card");
+
+  //function to change collected prop
   function toggle(cid) {
-    console.log(cid, collected);
+    setCards((prevCards) => {
+      return prevCards.map((card) => {
+        if (card.cid === cid) console.log(card);
+        return card.cid === cid
+          ? { ...card, collected: !card.collected }
+          : card;
+      });
+    });
   }
+
   return (
     <div className=" bg-slate-800 min-w-full min-h-screen">
       <Head>
@@ -23,21 +40,17 @@ export default function Home() {
       </h2>
       <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
         {starter.map((c) => (
-          <Card
-            props={c}
-            key={c.cid}
-            toggle={toggle}
-            collected={collected}
-          ></Card>
+          <Card props={c} key={c.cid} toggle={toggle}></Card>
         ))}
       </div>
-      {/* <h2 className="text-white text-4xl font-extrabold m-4 pl-12">
+
+      <h2 className="text-white text-4xl font-extrabold m-4 pl-12">
         Pool 1 Cards
       </h2>
       <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
         {pool_1.map((c) => (
           <>
-            <Card data={c} collected={collected} onToggle={handleClick}></Card>
+            <Card props={c} key={c.cid} toggle={toggle}></Card>
           </>
         ))}
       </div>
@@ -47,7 +60,7 @@ export default function Home() {
       <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
         {pool_2.map((c) => (
           <>
-            <Card data={c} collected={collected} onToggle={handleClick}></Card>
+            <Card props={c} key={c.cid} toggle={toggle}></Card>
           </>
         ))}
       </div>
@@ -59,7 +72,7 @@ export default function Home() {
       <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
         {pool_3.map((c) => (
           <>
-            <Card data={c} collected={collected} onToggle={handleClick}></Card>
+            <Card props={c} key={c.cid} toggle={toggle}></Card>
           </>
         ))}
       </div>
@@ -71,7 +84,7 @@ export default function Home() {
       <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
         {pool_4.map((c) => (
           <>
-            <Card data={c} collected={collected} onToggle={handleClick}></Card>
+            <Card props={c} key={c.cid} toggle={toggle}></Card>
           </>
         ))}
       </div>
@@ -82,30 +95,17 @@ export default function Home() {
       <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
         {pool_5.map((c) => (
           <>
-            <Card data={c} collected={collected} onClick={handleClick}></Card>
+            <Card props={c} key={c.cid} toggle={toggle}></Card>
           </>
         ))}
-      </div> */}
+      </div>
     </div>
   );
 }
 
 //cread filtered list
-const pool_1 = CardsData.filter((c) => {
-  return c.source_slug === "pool-1";
-});
-const pool_2 = CardsData.filter((c) => {
-  return c.source_slug === "pool-2";
-});
-const pool_3 = CardsData.filter((c) => {
-  return c.source_slug === "pool-3";
-});
-const pool_4 = CardsData.filter((c) => {
-  return c.source_slug === "pool-4";
-});
-const pool_5 = CardsData.filter((c) => {
-  return c.source_slug === "pool-5";
-});
-const starter = CardsData.filter((c) => {
-  return c.source_slug === "starter-card";
-});
+const allCardsdata = CardsData.filter((c) => c.type === "Character").map(
+  (c) => {
+    return { ...c, collected: false };
+  }
+);
