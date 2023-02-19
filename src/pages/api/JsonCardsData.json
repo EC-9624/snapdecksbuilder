@@ -389,7 +389,7 @@
     "carddefid": "Titania",
     "uuid": "7fgt9r8fhcxvrkhnoch",
     "source": "Series 4 Rare - Collection Level 486+ (Pool 4)",
-    "source_slug": "pool-4"
+    "source_slug": "pool-3"
   },
   {
     "cid": "56",
@@ -640,8 +640,8 @@
     "power": "2",
     "carddefid": "Ghost",
     "uuid": "iyghz0mzdi6extjxnmn",
-    "source": "",
-    "source_slug": ""
+    "source": "Series 5 Ultra Rare - Collection Level 486+ (Pool 5)",
+    "source_slug": "pool-5"
   },
   {
     "cid": "10",
@@ -1928,8 +1928,8 @@
     "power": "2",
     "carddefid": "Zabu",
     "uuid": "sut5for71nfncbuizt1x",
-    "source": "",
-    "source_slug": ""
+    "source": "Series 5 Ultra Rare - Collection Level 486+ (Pool 5)",
+    "source_slug": "pool-5"
   },
   {
     "cid": "91",
@@ -2082,8 +2082,8 @@
     "power": "0",
     "carddefid": "SilverSurfer",
     "uuid": "4kinbusbjcgmuuyism",
-    "source": "Season Pass",
-    "source_slug": "season-pass"
+    "source": "Series 5 Ultra Rare - Collection Level 486+ (Pool 5)",
+    "source_slug": "pool-5"
   },
   {
     "cid": "202",
@@ -2419,7 +2419,7 @@
     "carddefid": "AbsorbingMan",
     "uuid": "jpybrn9sr6uo7p88qhnv",
     "source": "Series 4 Rare - Collection Level 486+ (Pool 4)",
-    "source_slug": "pool-4"
+    "source_slug": "pool-3"
   },
   {
     "cid": "154",
@@ -2629,7 +2629,7 @@
     "carddefid": "Shuri",
     "uuid": "nbbbie0z9ywfloojzl8m",
     "source": "Series 5 Ultra Rare - Collection Level 486+ (Pool 5)",
-    "source_slug": "pool-5"
+    "source_slug": "pool-4"
   },
   {
     "cid": "204",
@@ -2670,8 +2670,8 @@
     "power": "2",
     "carddefid": "Shanna",
     "uuid": "tjreguevoglnwnkrsxr",
-    "source": "",
-    "source_slug": ""
+    "source": "Series 5 Ultra Rare - Collection Level 486+ (Pool 5)",
+    "source_slug": "pool-5"
   },
   {
     "cid": "55",
@@ -2684,8 +2684,8 @@
     "power": "4",
     "carddefid": "Dazzler",
     "uuid": "ww6zdagm50acwipyilf",
-    "source": "",
-    "source_slug": ""
+    "source": "Series 5 Ultra Rare - Collection Level 486+ (Pool 5)",
+    "source_slug": "pool-5"
   },
   {
     "cid": "389",
@@ -3021,7 +3021,7 @@
     "carddefid": "Valkyrie",
     "uuid": "jogq87savz3yob1o7thc",
     "source": "Series 5 Ultra Rare - Collection Level 486+ (Pool 5)",
-    "source_slug": "pool-5"
+    "source_slug": "pool-4"
   },
   {
     "cid": "203",
@@ -3063,7 +3063,7 @@
     "carddefid": "BlackPanther",
     "uuid": "nbbbie0z9ywfloojzl8m",
     "source": "Series 5 Ultra Rare - Collection Level 486+ (Pool 5)",
-    "source_slug": "pool-5"
+    "source_slug": "pool-4"
   },
   {
     "cid": "180",
@@ -3258,8 +3258,8 @@
     "power": "4",
     "carddefid": "ShadowKing",
     "uuid": "begsbc7teedzgr5jmh7p",
-    "source": "",
-    "source_slug": ""
+    "source": "Series 5 Ultra Rare - Collection Level 486+ (Pool 5)",
+    "source_slug": "pool-5"
   },
   {
     "cid": "96",
@@ -3441,7 +3441,7 @@
     "carddefid": "SheHulk",
     "uuid": "ezlfjwow2w4ph6ztfcj0",
     "source": "Series 4 Rare - Collection Level 486+ (Pool 4)",
-    "source_slug": "pool-4"
+    "source_slug": "pool-3"
   },
   {
     "cid": "384",
