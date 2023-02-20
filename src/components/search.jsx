@@ -1,27 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Search = () => {
+const Search = (props) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleInputChange = (event) => {
+    setSearchTerm(event.target.value);
+    props.onSearchTermChange(event.target.value);
+  };
+
   return (
-    <div className=" h-64 w-fit bg-orange-500 p-2 border-2 rounded">
-      <h1>Search a Card</h1>
-      <input
-        type="text"
-        className="border-2 rounded-md border-blue-400 "
-        placeholder="Search..."
-      />
+    <div className="text-white flex flex-col  border-4 p-4 w-fit">
+      <div className="flex gap-2">
+        <div>
+          <h1>Keyword</h1>
+          <input
+            type="search"
+            name="search-form"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={handleInputChange}
+            className="text-orange-500"
+          />
+        </div>
 
-      <div className="min-w-fit">
-        <h2>Ability</h2>
-        <input type="text" placeholder="Ability" className="" />
+        <div>
+          <h1>Ability</h1>
+          <input type="text" placeholder="Search..." />
+        </div>
+
+        {/* <div>
+          <h1>Source</h1>
+          <input type="text" placeholder="Source..." />
+        </div>
+
       </div>
-      <div className="min-w-fit">
-        <h2>Source/Pool</h2>
-        <input type="text" placeholder="Source/Pool" className="" />
+      <div className="flex gap-6">
+        <div>
+          <h2>Power</h2>
+          <div></div>
+        </div>
+
+        <div>
+          <h2>Cost</h2>
+          <div></div>
+        </div> */}
       </div>
-      <div>
-        <h2>Cost</h2>
-      </div>
-      <div>Power</div>
     </div>
   );
 };
