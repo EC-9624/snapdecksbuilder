@@ -3,7 +3,7 @@ import Card from "./card";
 
 function Builder() {
   return (
-    <div className="grid grid-cols-6 grid-rows-2 gap-4 p-5">
+    <div className="grid grid-cols-6 grid-rows-2 gap-4 space-x-0.5 p-8 border-4 border-gray-500 rounded-lg bg-black mb-4 ">
       <div className="bg-gray-100 h-32 w-24 border-solid border-4 border-yellow-500 rounded "></div>
       <div className="bg-gray-200 h-32 w-24 border-solid border-4 border-yellow-500 rounded "></div>
       <div className="bg-gray-300 h-32 w-24 border-solid border-4 border-yellow-500 rounded "></div>

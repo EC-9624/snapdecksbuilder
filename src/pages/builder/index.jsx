@@ -6,43 +6,54 @@ import CardsData from "../api/JsonCardsData";
 import Search from "@/components/search";
 
 const builder = () => {
+  //allcards state
   const [cards, setCards] = useState(allCardsdata);
-  const [filteredList, setFilteredlist] = useState(allCardsdata);
+  //filter cards state
+  const [filtered, setFiltered] = useState(cards);
 
-  //function to change collected prop
-  function toggle(cid) {
+  //handle query
+  const handleSearchTermChange = (searchTerm) => {
+    const filteredList = cards.filter((card) =>
+      card.cname.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFiltered(filteredList);
+  };
+
+  //handle indeck toggle
+  const handleToggle = (cid) => {
     console.log(cid);
-  }
+    const updatedCards = cards.map((card) => {
+      return card.cid === cid ? { ...card, inDeck: !card.inDeck } : card;
+    });
+
+    const updatedFilteredCards = filtered.map((card) => {
+      return card.cid === cid ? { ...card, inDeck: !card.inDeck } : card;
+    });
+
+    setCards(updatedCards);
+    setFiltered(updatedFilteredCards);
+  };
 
   return (
-    <>
-      <div className="bg-slate-800 container min-h-screen w-full flex flex-col justify-center items-center">
-        <Header></Header>
-        <Builder></Builder>
-        <div className="flex flex-row">
-          {/* <div className="flex flex-col">
-            <div className="text-white"> Cost Component</div>
-            <div className="text-white"> Power Component</div>
-          </div> */}
-        </div>
-        <div className="flex flex-row  justify-center flex-2 ">
-          <div className=" grid grid-cols-6 h-auto w-auto mr-2 ">
-            {filteredList.map((c) => {
-              return (
-                <BuilderCard
-                  props={c}
-                  key={c.cid}
-                  toggle={toggle}
-                ></BuilderCard>
-              );
-            })}
-          </div>
-          <div className="flex-1">
-            <Search></Search>
-          </div>
-        </div>
+    <div className="bg-slate-800  min-h-screen w-screen flex flex-col justify-start items-center">
+      <Header></Header>
+
+      <Builder></Builder>
+
+      <Search onSearchTermChange={handleSearchTermChange}></Search>
+
+      <div className=" grid grid-cols-6 h-auto w-auto mr-2 ">
+        {filtered.map((c) => {
+          return (
+            <BuilderCard
+              props={c}
+              key={c.cid}
+              toggle={handleToggle}
+            ></BuilderCard>
+          );
+        })}
       </div>
-    </>
+    </div>
   );
 };
 

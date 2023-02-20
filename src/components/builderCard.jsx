@@ -10,8 +10,8 @@ const BuilderCard = (props) => {
         src={art}
         alt=""
         loading="lazy"
-        onClick={() => toggle(cid)}
         className={className}
+        onClick={() => toggle(cid)}
       />
     </div>
   );
