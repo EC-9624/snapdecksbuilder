@@ -19,7 +19,6 @@ export default function Home() {
   function toggle(cid) {
     setCards((prevCards) => {
       return prevCards.map((card) => {
-        if (card.cid === cid) console.log(card);
         return card.cid === cid
           ? { ...card, collected: !card.collected }
           : card;
