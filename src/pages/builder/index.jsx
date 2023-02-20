@@ -35,25 +35,27 @@ const builder = () => {
   };
 
   return (
-    <div className="bg-slate-800  min-h-screen w-screen flex flex-col justify-start items-center">
+    <>
       <Header></Header>
 
-      <Builder></Builder>
-
-      <Search onSearchTermChange={handleSearchTermChange}></Search>
-
-      <div className=" grid grid-cols-6 h-auto w-auto mr-2 ">
-        {filtered.map((c) => {
-          return (
-            <BuilderCard
-              props={c}
-              key={c.cid}
-              toggle={handleToggle}
-            ></BuilderCard>
-          );
-        })}
+      <div className="bg-slate-800 min-w-full min-h-screen flex flex-col justify-start items-center ">
+        <Builder></Builder>
+        <Search onSearchTermChange={handleSearchTermChange}></Search>
+        <div className="block">
+          <div className=" grid grid-cols-6 h-auto w-auto mr-2 max-w-fit">
+            {filtered.map((c) => {
+              return (
+                <BuilderCard
+                  props={c}
+                  key={c.cid}
+                  toggle={handleToggle}
+                ></BuilderCard>
+              );
+            })}
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

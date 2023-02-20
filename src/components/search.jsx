@@ -23,9 +23,12 @@ const Search = (props) => {
           />
         </div>
 
-        <div>
+        <div className="text-orange-600">
           <h1>Ability</h1>
-          <input type="text" placeholder="Search..." />
+          <select name="ability">
+            <option value="On Reaveal">On Reaveal</option>
+            <option value="On Going">On Going</option>
+          </select>
         </div>
 
         {/* <div>
