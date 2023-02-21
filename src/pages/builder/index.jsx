@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from "@/components/header";
 import Builder from "@/components/builder";
 import BuilderCard from "@/components/builderCard";
@@ -10,6 +10,9 @@ const builder = () => {
   const [cards, setCards] = useState(allCardsdata);
   //filter cards state
   const [filtered, setFiltered] = useState(cards);
+
+  const Cards = [];
+  console.log(Cards);
 
   //return Search query string
   const handleSearchTermChange = (searchTerm) => {
