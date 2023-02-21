@@ -62,6 +62,7 @@ const Search = (props) => {
             className="text-orange-500"
           >
             <option value="">All</option>
+            <option value="starter-card">starter</option>
             <option value="pool-1">pool-1</option>
             <option value="pool-2">pool-2</option>
             <option value="pool-3">pool-3</option>

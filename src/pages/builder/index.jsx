@@ -8,7 +8,6 @@ import Search from "@/components/search";
 const builder = () => {
   //allcards state
   const [cards, setCards] = useState(allCardsdata);
-
   //filter cards state
   const [filtered, setFiltered] = useState(cards);
 
@@ -34,7 +33,7 @@ const builder = () => {
     });
     return filteredList;
   };
-
+  // return Source query String
   const handleSourceChange = (sourceTerm) => {
     const filteredSource = cards.filter((card) => {
       const sourceMatches = card.source_slug
@@ -45,7 +44,7 @@ const builder = () => {
     return filteredSource;
   };
 
-  //take input here and pass it through the function
+  //take input here and pass it  setFiltered through the function
   const updateFilteredState = (searchTerm, filterTerm, sourceTerm) => {
     const searchList = handleSearchTermChange(searchTerm);
     const filteredList = handleFilterChange(filterTerm);
