@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "@/components/header";
 import Builder from "@/components/builder";
 import BuilderCard from "@/components/builderCard";
@@ -8,20 +8,59 @@ import Search from "@/components/search";
 const builder = () => {
   //allcards state
   const [cards, setCards] = useState(allCardsdata);
+
   //filter cards state
   const [filtered, setFiltered] = useState(cards);
 
-  //handle query
+  //return Search query string
   const handleSearchTermChange = (searchTerm) => {
-    const filteredList = cards.filter((card) =>
-      card.cname.toLowerCase().includes(searchTerm.toLowerCase())
+    const searchList = cards.filter((card) => {
+      const searchMatches = card.cname
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+
+      return searchMatches;
+    });
+    return searchList;
+  };
+
+  //return Ability query string
+  const handleFilterChange = (filterTerm) => {
+    const filteredList = cards.filter((card) => {
+      const filterMatches = card.ability
+        .toLowerCase()
+        .includes(filterTerm.toLowerCase());
+      return filterMatches;
+    });
+    return filteredList;
+  };
+
+  const handleSourceChange = (sourceTerm) => {
+    const filteredSource = cards.filter((card) => {
+      const sourceMatches = card.source_slug
+        .toLowerCase()
+        .includes(sourceTerm.toLowerCase());
+      return sourceMatches;
+    });
+    return filteredSource;
+  };
+
+  //take input here and pass it through the function
+  const updateFilteredState = (searchTerm, filterTerm, sourceTerm) => {
+    const searchList = handleSearchTermChange(searchTerm);
+    const filteredList = handleFilterChange(filterTerm);
+    const sourceList = handleSourceChange(sourceTerm);
+
+    // filtering
+    const updatedFilteredCards = searchList.filter(
+      (card) => filteredList.includes(card) && sourceList.includes(card)
     );
-    setFiltered(filteredList);
+    //update state
+    setFiltered(updatedFilteredCards);
   };
 
   //handle indeck toggle
   const handleToggle = (cid) => {
-    console.log(cid);
     const updatedCards = cards.map((card) => {
       return card.cid === cid ? { ...card, inDeck: !card.inDeck } : card;
     });
@@ -40,7 +79,7 @@ const builder = () => {
 
       <div className="bg-slate-800 min-w-full min-h-screen flex flex-col justify-start items-center ">
         <Builder></Builder>
-        <Search onSearchTermChange={handleSearchTermChange}></Search>
+        <Search updateFilteredState={updateFilteredState}></Search>
         <div className="block">
           <div className=" grid grid-cols-6 h-auto w-auto mr-2 max-w-fit">
             {filtered.map((c) => {
