@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import Header from "@/components/header";
-import Builder from "@/components/builder";
+import DeckCard from "@/components/deckcard";
 import BuilderCard from "@/components/builderCard";
 import CardsData from "../api/JsonCardsData";
 import Search from "@/components/search";
+import Emptycard from "@/components/emptycard";
 
 const builder = () => {
   //allcards state
   const [cards, setCards] = useState(allCardsdata);
   //filter cards state
   const [filtered, setFiltered] = useState(cards);
-
-  const Cards = [];
-  console.log(Cards);
 
   //return Search query string
   const handleSearchTermChange = (searchTerm) => {
@@ -62,7 +60,7 @@ const builder = () => {
   };
 
   //handle indeck toggle
-  const handleToggle = (cid) => {
+  const handleindeckToggle = (cid) => {
     const updatedCards = cards.map((card) => {
       return card.cid === cid ? { ...card, inDeck: !card.inDeck } : card;
     });
@@ -75,12 +73,40 @@ const builder = () => {
     setFiltered(updatedFilteredCards);
   };
 
+  //filter for deck builder
+  const isIndeck = cards.filter((c) => c.inDeck === true);
+  //variable for json stringify
+  const cardsId = isIndeck.map((card) => {
+    return { CardDefId: card.carddefid };
+  });
+
+  const JsonObj = { Cards: cardsId };
+  const JsonString = JSON.stringify(JsonObj);
+  //deck code
+  let objJsonB64 = Buffer.from(JsonString).toString("base64");
+  console.log(objJsonB64);
+
+  const components = [];
+  // deckbuilder
+  function renderDeck() {
+    isIndeck.map((card) => {
+      return components.push(<DeckCard key={card.cid} props={card} />);
+    });
+    if (isIndeck.length < 12) {
+      for (let i = isIndeck.length; i < 12; i++) {
+        components.push(<Emptycard key={i} />);
+      }
+    }
+  }
+  renderDeck();
   return (
     <>
       <Header></Header>
 
       <div className="bg-slate-800 min-w-full min-h-screen flex flex-col justify-start items-center ">
-        <Builder></Builder>
+        <div className=" p-2 grid grid-cols-6 grid-rows-2 gap-2  border-4 border-gray-500 rounded-lg bg-black mb-4 max-w-fit items-center justify-center">
+          {components}
+        </div>
         <Search updateFilteredState={updateFilteredState}></Search>
         <div className="block">
           <div className=" grid grid-cols-6 h-auto w-auto mr-2 max-w-fit">
@@ -89,7 +115,7 @@ const builder = () => {
                 <BuilderCard
                   props={c}
                   key={c.cid}
-                  toggle={handleToggle}
+                  toggle={handleindeckToggle}
                 ></BuilderCard>
               );
             })}
