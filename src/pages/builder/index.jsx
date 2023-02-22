@@ -56,19 +56,40 @@ const builder = () => {
     return filteredCost;
   };
 
+  const handlePowerFilter = (power) => {
+    if (power == null) return cards;
+    if (power <= 0) {
+      return cards.filter((card) => {
+        return card.power <= power;
+      });
+    }
+    const filteredPower = cards.filter((card) => {
+      return power >= 7 ? card.power >= 7 : card.power == power;
+    });
+    console.log(filteredPower);
+    return filteredPower;
+  };
+
   //take input here and pass it  setFiltered through the function
-  const updateFilteredState = (searchTerm, filterTerm, sourceTerm, cost) => {
+  const updateFilteredState = (
+    searchTerm,
+    filterTerm,
+    sourceTerm,
+    cost,
+    power
+  ) => {
     const searchList = handleSearchTermChange(searchTerm);
     const filteredList = handleFilterChange(filterTerm);
     const sourceList = handleSourceChange(sourceTerm);
     const costList = handleCostFilter(cost);
-
+    const powerList = handlePowerFilter(power);
     // filtering
     const updatedFilteredCards = searchList.filter(
       (card) =>
         filteredList.includes(card) &&
         sourceList.includes(card) &&
-        costList.includes(card)
+        costList.includes(card) &&
+        powerList.includes(card)
     );
 
     //update state

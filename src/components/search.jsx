@@ -5,6 +5,7 @@ const Search = (props) => {
   const [filterValue, setFilterValue] = useState("");
   const [sourceFilter, setSourceFilter] = useState("");
   const [costFilter, setCostFilter] = useState(null);
+  const [powerFilter, setPowerFilter] = useState(null);
 
   const handleSearchInputChange = (event) => {
     const newSearchTerm = event.target.value;
@@ -24,20 +25,47 @@ const Search = (props) => {
       searchTerm,
       newFilterTerm,
       sourceFilter,
-      costFilter
+      costFilter,
+      powerFilter
     );
   };
 
   const handleSourceInputChange = (event) => {
     const newSource = event.target.value;
     setSourceFilter(newSource);
-    props.updateFilteredState(searchTerm, filterValue, newSource, costFilter);
+    props.updateFilteredState(
+      searchTerm,
+      filterValue,
+      newSource,
+      costFilter,
+      powerFilter
+    );
   };
 
   const handleCostFilterClick = (cost) => {
     setCostFilter(cost);
-    props.updateFilteredState(searchTerm, filterValue, sourceFilter, cost);
+    props.updateFilteredState(
+      searchTerm,
+      filterValue,
+      sourceFilter,
+      cost,
+      powerFilter
+    );
   };
+
+  const handlePowerFilterClick = (power) => {
+    setPowerFilter(power);
+    props.updateFilteredState(
+      searchTerm,
+      filterValue,
+      sourceFilter,
+      costFilter,
+      power
+    );
+  };
+
+  const cost = [0, 1, 2, 3, 4, 5, 6];
+  const power = [0, 1, 2, 3, 4, 5, 6, 7];
 
   return (
     <div className="text-white text-xl font-bold flex flex-col border-2 p-4 w-fit rounded">
@@ -88,57 +116,50 @@ const Search = (props) => {
           </select>
         </div>
       </div>
-      <div>
-        <h1>Cost</h1>
-        <div className=" w-fit flex gap-2">
-          <button
-            className="bg-fuchsia-400 "
-            onClick={() => handleCostFilterClick()}
-          >
-            All
-          </button>
-          <button
-            className="bg-fuchsia-400"
-            onClick={() => handleCostFilterClick(0)}
-          >
-            0
-          </button>
-          <button
-            className="bg-fuchsia-400"
-            onClick={() => handleCostFilterClick(1)}
-          >
-            1
-          </button>
-          <button
-            className="bg-fuchsia-400"
-            onClick={() => handleCostFilterClick(2)}
-          >
-            2
-          </button>
-          <button
-            className="bg-fuchsia-400"
-            onClick={() => handleCostFilterClick(3)}
-          >
-            3
-          </button>
-          <button
-            className="bg-fuchsia-400"
-            onClick={() => handleCostFilterClick(4)}
-          >
-            4
-          </button>
-          <button
-            className="bg-fuchsia-400"
-            onClick={() => handleCostFilterClick(5)}
-          >
-            5
-          </button>
-          <button
-            className="bg-fuchsia-400"
-            onClick={() => handleCostFilterClick(6)}
-          >
-            6+
-          </button>
+      <div className="flex gap-5">
+        <div>
+          <h1>Cost</h1>
+          <div className=" w-fit flex gap-2">
+            <button
+              className="bg-fuchsia-400 "
+              onClick={() => handleCostFilterClick()}
+            >
+              All
+            </button>
+            {cost.map((item) => {
+              return (
+                <button
+                  className="bg-fuchsia-400 "
+                  onClick={() => handleCostFilterClick(item)}
+                >
+                  {item}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div>
+          <h1>Power</h1>
+          <div className=" w-fit flex gap-2">
+            <button
+              className="bg-red-500"
+              onClick={() => handlePowerFilterClick()}
+            >
+              All
+            </button>
+
+            {power.map((item) => {
+              return (
+                <button
+                  className="bg-red-500"
+                  onClick={() => handlePowerFilterClick(item)}
+                >
+                  {item == 0 ? "-1" : item}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
