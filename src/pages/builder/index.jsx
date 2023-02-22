@@ -47,20 +47,35 @@ const builder = () => {
     return filteredSource;
   };
 
+  const handleCostFilter = (cost) => {
+    if (cost == null) return cards;
+    const filteredCost = cards.filter((card) => {
+      return cost >= 6 ? card.cost >= 6 : card.cost == cost;
+    });
+    console.log(filteredCost);
+    return filteredCost;
+  };
+
   //take input here and pass it  setFiltered through the function
-  const updateFilteredState = (searchTerm, filterTerm, sourceTerm) => {
+  const updateFilteredState = (searchTerm, filterTerm, sourceTerm, cost) => {
     const searchList = handleSearchTermChange(searchTerm);
     const filteredList = handleFilterChange(filterTerm);
     const sourceList = handleSourceChange(sourceTerm);
+    const costList = handleCostFilter(cost);
 
     // filtering
     const updatedFilteredCards = searchList.filter(
-      (card) => filteredList.includes(card) && sourceList.includes(card)
+      (card) =>
+        filteredList.includes(card) &&
+        sourceList.includes(card) &&
+        costList.includes(card)
     );
+
     //update state
     setFiltered(updatedFilteredCards);
   };
 
+  //toggle card inDeck
   const handleindeckToggle = (cid) => {
     let updatedCards = cards.map((card) =>
       card.cid === cid ? { ...card, inDeck: !card.inDeck } : card
@@ -84,11 +99,12 @@ const builder = () => {
           : card
       );
     }
-
+    //update both to sync the state
     setCards(updatedCards);
     setFiltered(updatedFilteredCards);
   };
 
+  //ResetBtn
   const handleReset = () => {
     const updatedCards = cards.map((card) => ({ ...card, inDeck: false }));
     const updatedFilteredCards = filtered.map((card) => ({
@@ -100,13 +116,13 @@ const builder = () => {
     setFiltered(updatedFilteredCards);
     setIsIndeck([]);
   };
-
+  //render Deck
   function DeckBuilder() {
     useEffect(() => {
       const filteredCards = cards.filter((c) => c.inDeck === true);
       setIsIndeck(filteredCards);
     }, [cards]);
-    console.log(isIndeck);
+    //console.log(isIndeck);
     return (
       <div className=" p-2 grid grid-cols-6 grid-rows-2 gap-2  border-4 border-gray-500 rounded-lg bg-black mb-4 max-w-fit items-center justify-center">
         {Array.from({ length: 12 }, (_, i) => {
@@ -120,7 +136,7 @@ const builder = () => {
       </div>
     );
   }
-
+  //generate base64 JsonString
   function generateDeckCode() {
     //filter for deck builder
     const cardsIndeck = cards.filter((c) => c.inDeck === true);
@@ -133,6 +149,7 @@ const builder = () => {
     const JsonObj = { Cards: cardsId };
     const JsonString = JSON.stringify(JsonObj);
     let objJsonB64 = Buffer.from(JsonString).toString("base64");
+    return objJsonB64;
   }
 
   return (
@@ -147,7 +164,7 @@ const builder = () => {
             {/* deckCode Btn */}
             <button
               className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded inline-flex items-center"
-              onClick={() => console.log("copy")}
+              onClick={() => navigator.clipboard.writeText(generateDeckCode())}
             >
               <svg
                 className="fill-current w-4 h-4 mr-2"

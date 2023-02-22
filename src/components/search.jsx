@@ -4,28 +4,45 @@ const Search = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterValue, setFilterValue] = useState("");
   const [sourceFilter, setSourceFilter] = useState("");
+  const [costFilter, setCostFilter] = useState(null);
 
   const handleSearchInputChange = (event) => {
     const newSearchTerm = event.target.value;
     setSearchTerm(newSearchTerm);
-    props.updateFilteredState(newSearchTerm, filterValue, sourceFilter);
+    props.updateFilteredState(
+      newSearchTerm,
+      filterValue,
+      sourceFilter,
+      costFilter
+    );
   };
 
   const handleFilterInputChange = (event) => {
     const newFilterTerm = event.target.value;
     setFilterValue(newFilterTerm);
-    props.updateFilteredState(searchTerm, newFilterTerm, sourceFilter);
+    props.updateFilteredState(
+      searchTerm,
+      newFilterTerm,
+      sourceFilter,
+      costFilter
+    );
   };
 
   const handleSourceInputChange = (event) => {
     const newSource = event.target.value;
     setSourceFilter(newSource);
-    props.updateFilteredState(searchTerm, filterValue, newSource);
+    props.updateFilteredState(searchTerm, filterValue, newSource, costFilter);
   };
+
+  const handleCostFilterClick = (cost) => {
+    setCostFilter(cost);
+    props.updateFilteredState(searchTerm, filterValue, sourceFilter, cost);
+  };
+
   return (
-    <div className="text-white flex flex-col  border-4 p-4 w-fit">
-      <div className="flex gap-2">
-        <div>
+    <div className="text-white text-xl font-bold flex flex-col border-2 p-4 w-fit rounded">
+      <div className="flex gap-10">
+        <div className="text-orange-500">
           <h1>Keyword</h1>
           <input
             type="search"
@@ -33,7 +50,6 @@ const Search = (props) => {
             placeholder="Search..."
             value={searchTerm}
             onChange={handleSearchInputChange}
-            className="text-orange-500"
           />
         </div>
 
@@ -43,6 +59,7 @@ const Search = (props) => {
             name="ability"
             value={filterValue}
             onChange={handleFilterInputChange}
+            className="font-semibold"
           >
             <option value="">All</option>
             <option value="On Reveal">On Reveal</option>
@@ -53,13 +70,13 @@ const Search = (props) => {
           </select>
         </div>
 
-        <div>
+        <div className="text-orange-500 ">
           <h1>Source</h1>
           <select
             name="source"
             value={sourceFilter}
             onChange={handleSourceInputChange}
-            className="text-orange-500"
+            className="font-semibold"
           >
             <option value="">All</option>
             <option value="starter-card">starter</option>
@@ -71,17 +88,59 @@ const Search = (props) => {
           </select>
         </div>
       </div>
-      {/* <div className="flex gap-6">
-        <div>
-          <h2>Power</h2>
-          <div></div>
+      <div>
+        <h1>Cost</h1>
+        <div className=" w-fit flex gap-2">
+          <button
+            className="bg-fuchsia-400 "
+            onClick={() => handleCostFilterClick()}
+          >
+            All
+          </button>
+          <button
+            className="bg-fuchsia-400"
+            onClick={() => handleCostFilterClick(0)}
+          >
+            0
+          </button>
+          <button
+            className="bg-fuchsia-400"
+            onClick={() => handleCostFilterClick(1)}
+          >
+            1
+          </button>
+          <button
+            className="bg-fuchsia-400"
+            onClick={() => handleCostFilterClick(2)}
+          >
+            2
+          </button>
+          <button
+            className="bg-fuchsia-400"
+            onClick={() => handleCostFilterClick(3)}
+          >
+            3
+          </button>
+          <button
+            className="bg-fuchsia-400"
+            onClick={() => handleCostFilterClick(4)}
+          >
+            4
+          </button>
+          <button
+            className="bg-fuchsia-400"
+            onClick={() => handleCostFilterClick(5)}
+          >
+            5
+          </button>
+          <button
+            className="bg-fuchsia-400"
+            onClick={() => handleCostFilterClick(6)}
+          >
+            6+
+          </button>
         </div>
-
-        <div>
-          <h2>Cost</h2>
-          <div></div>
-        </div>
-      </div> */}
+      </div>
     </div>
   );
 };
