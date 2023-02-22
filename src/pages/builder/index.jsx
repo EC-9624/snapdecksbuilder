@@ -81,12 +81,12 @@ const builder = () => {
     return { CardDefId: card.carddefid };
   });
 
+  //Create deck code
   const JsonObj = { Cards: cardsId };
   const JsonString = JSON.stringify(JsonObj);
-  //deck code
   let objJsonB64 = Buffer.from(JsonString).toString("base64");
+  console.log(objJsonB64);
 
-  // const components = [];
   const components = [];
 
   // deckbuilder
@@ -94,6 +94,7 @@ const builder = () => {
     isIndeck.map((card) => {
       return components.push(<DeckCard key={card.cid} props={card} />);
     });
+
     if (isIndeck.length < 12) {
       for (let i = isIndeck.length; i < 12; i++) {
         components.push(<Emptycard key={i} />);
@@ -101,10 +102,10 @@ const builder = () => {
     }
   }
 
-  const handleResetBtn = () => {
-    while (isIndeck.length < 0) isIndeck.pop();
-  };
-  console.log("isIndeck", isIndeck);
+  const handleResetBtn = () => {};
+
+  // console.log("isIndeck", isIndeck);
+  // console.log("length", isIndeck.length);
 
   renderDeck();
   return (
