@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "@/components/header";
 import DeckCard from "@/components/deckcard";
 import BuilderCard from "@/components/builderCard";
@@ -11,6 +11,8 @@ const builder = () => {
   const [cards, setCards] = useState(allCardsdata);
   //filter cards state
   const [filtered, setFiltered] = useState(cards);
+  //state of card in deck
+  const [isIndeck, setIsIndeck] = useState([]);
 
   //return Search query string
   const handleSearchTermChange = (searchTerm) => {
@@ -59,64 +61,88 @@ const builder = () => {
     setFiltered(updatedFilteredCards);
   };
 
-  //handle indeck toggle
   const handleindeckToggle = (cid) => {
-    const updatedCards = cards.map((card) => {
-      return card.cid === cid ? { ...card, inDeck: !card.inDeck } : card;
-    });
+    let updatedCards = cards.map((card) =>
+      card.cid === cid ? { ...card, inDeck: !card.inDeck } : card
+    );
 
-    const updatedFilteredCards = filtered.map((card) => {
-      return card.cid === cid ? { ...card, inDeck: !card.inDeck } : card;
-    });
+    let updatedFilteredCards = filtered.map((card) =>
+      card.cid === cid ? { ...card, inDeck: !card.inDeck } : card
+    );
+
+    // If the length of isIndeck is greater than or equal to 12
+    if (isIndeck.length >= 12) {
+      updatedCards = updatedCards.map((card) =>
+        card.cid === cid && card.inDeck
+          ? { ...card, inDeck: !card.inDeck }
+          : card
+      );
+
+      updatedFilteredCards = updatedFilteredCards.map((card) =>
+        card.cid === cid && card.inDeck
+          ? { ...card, inDeck: !card.inDeck }
+          : card
+      );
+    }
 
     setCards(updatedCards);
     setFiltered(updatedFilteredCards);
   };
 
-  //filter for deck builder
-  const isIndeck = cards.filter((c) => c.inDeck === true);
+  const handleReset = () => {
+    const updatedCards = cards.map((card) => ({ ...card, inDeck: false }));
+    const updatedFilteredCards = filtered.map((card) => ({
+      ...card,
+      inDeck: false,
+    }));
 
-  //variable for json stringify
-  const cardsId = isIndeck.map((card) => {
-    return { CardDefId: card.carddefid };
-  });
+    setCards(updatedCards);
+    setFiltered(updatedFilteredCards);
+    setIsIndeck([]);
+  };
 
-  //Create deck code
-  const JsonObj = { Cards: cardsId };
-  const JsonString = JSON.stringify(JsonObj);
-  let objJsonB64 = Buffer.from(JsonString).toString("base64");
-  console.log(objJsonB64);
-
-  const components = [];
-
-  // deckbuilder
-  function renderDeck() {
-    isIndeck.map((card) => {
-      return components.push(<DeckCard key={card.cid} props={card} />);
-    });
-
-    if (isIndeck.length < 12) {
-      for (let i = isIndeck.length; i < 12; i++) {
-        components.push(<Emptycard key={i} />);
-      }
-    }
+  function DeckBuilder() {
+    useEffect(() => {
+      const filteredCards = cards.filter((c) => c.inDeck === true);
+      setIsIndeck(filteredCards);
+    }, [cards]);
+    console.log(isIndeck);
+    return (
+      <div className=" p-2 grid grid-cols-6 grid-rows-2 gap-2  border-4 border-gray-500 rounded-lg bg-black mb-4 max-w-fit items-center justify-center">
+        {Array.from({ length: 12 }, (_, i) => {
+          const card = isIndeck[i];
+          return card ? (
+            <DeckCard key={card.cid} props={card} />
+          ) : (
+            <Emptycard key={i} />
+          );
+        })}
+      </div>
+    );
   }
 
-  const handleResetBtn = () => {};
+  function generateDeckCode() {
+    //filter for deck builder
+    const cardsIndeck = cards.filter((c) => c.inDeck === true);
 
-  // console.log("isIndeck", isIndeck);
-  // console.log("length", isIndeck.length);
+    //variable for json stringify
+    const cardsId = cardsIndeck.map((card) => {
+      return { CardDefId: card.carddefid };
+    });
+    //Create deck code
+    const JsonObj = { Cards: cardsId };
+    const JsonString = JSON.stringify(JsonObj);
+    let objJsonB64 = Buffer.from(JsonString).toString("base64");
+  }
 
-  renderDeck();
   return (
     <>
       <Header></Header>
 
       <div className="bg-slate-800 min-w-full min-h-screen flex flex-col justify-start items-center ">
         <div className="p-5">
-          <div className=" p-2 grid grid-cols-6 grid-rows-2 gap-2  border-4 border-gray-500 rounded-lg bg-black mb-4 max-w-fit items-center justify-center">
-            {components}
-          </div>
+          {/* deckBuilder components */}
+          {DeckBuilder()}
           <div className="flex gap-2">
             {/* deckCode Btn */}
             <button
@@ -137,7 +163,7 @@ const builder = () => {
               className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
               onClick={() => {
                 console.log("ResetBtn Clicked");
-                handleResetBtn();
+                handleReset();
               }}
             >
               RESET
