@@ -74,7 +74,7 @@ const builder = () => {
   };
 
   //filter for deck builder
-  const isIndeck = cards.filter((c) => c.inDeck === true);
+  let isIndeck = cards.filter((c) => c.inDeck === true);
   //variable for json stringify
   const cardsId = isIndeck.map((card) => {
     return { CardDefId: card.carddefid };
@@ -84,7 +84,6 @@ const builder = () => {
   const JsonString = JSON.stringify(JsonObj);
   //deck code
   let objJsonB64 = Buffer.from(JsonString).toString("base64");
-  console.log(objJsonB64);
 
   const components = [];
   // deckbuilder
@@ -104,11 +103,37 @@ const builder = () => {
       <Header></Header>
 
       <div className="bg-slate-800 min-w-full min-h-screen flex flex-col justify-start items-center ">
-        <div className=" p-2 grid grid-cols-6 grid-rows-2 gap-2  border-4 border-gray-500 rounded-lg bg-black mb-4 max-w-fit items-center justify-center">
-          {components}
+        <div className="p-5">
+          <div className=" p-2 grid grid-cols-6 grid-rows-2 gap-2  border-4 border-gray-500 rounded-lg bg-black mb-4 max-w-fit items-center justify-center">
+            {components}
+          </div>
+          <div className="flex gap-2">
+            {/* deckCode Btn */}
+            <button
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded inline-flex items-center"
+              onClick={() => console.log("copy")}
+            >
+              <svg
+                className="fill-current w-4 h-4 mr-2"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+              </svg>
+              <span>COPPY</span>
+            </button>
+            {/* ResetBtn */}
+            <button
+              className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
+              onClick={() => console.log("ResetBtn")}
+            >
+              RESET
+            </button>
+          </div>
         </div>
+
         <Search updateFilteredState={updateFilteredState}></Search>
-        <div className="block">
+        <div className="mt-4">
           <div className=" grid grid-cols-6 h-auto w-auto mr-2 max-w-fit">
             {filtered.map((c) => {
               return (
