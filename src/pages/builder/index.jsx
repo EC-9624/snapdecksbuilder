@@ -74,7 +74,8 @@ const builder = () => {
   };
 
   //filter for deck builder
-  let isIndeck = cards.filter((c) => c.inDeck === true);
+  const isIndeck = cards.filter((c) => c.inDeck === true);
+
   //variable for json stringify
   const cardsId = isIndeck.map((card) => {
     return { CardDefId: card.carddefid };
@@ -85,7 +86,9 @@ const builder = () => {
   //deck code
   let objJsonB64 = Buffer.from(JsonString).toString("base64");
 
+  // const components = [];
   const components = [];
+
   // deckbuilder
   function renderDeck() {
     isIndeck.map((card) => {
@@ -97,6 +100,12 @@ const builder = () => {
       }
     }
   }
+
+  const handleResetBtn = () => {
+    while (isIndeck.length < 0) isIndeck.pop();
+  };
+  console.log("isIndeck", isIndeck);
+
   renderDeck();
   return (
     <>
@@ -125,7 +134,10 @@ const builder = () => {
             {/* ResetBtn */}
             <button
               className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
-              onClick={() => console.log("ResetBtn")}
+              onClick={() => {
+                console.log("ResetBtn Clicked");
+                handleResetBtn();
+              }}
             >
               RESET
             </button>
