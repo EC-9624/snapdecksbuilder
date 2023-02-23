@@ -150,7 +150,7 @@ const builder = () => {
       const filteredCards = cards.filter((c) => c.inDeck === true);
       setIsIndeck(filteredCards);
     }, [cards]);
-    //console.log(isIndeck);
+
     return (
       <div className=" p-4 grid grid-cols-6 grid-rows-2 gap-2  border-2 border-gray-500 bg-slate-900 rounded-lg mb-4 max-w-fit items-center justify-center">
         {Array.from({ length: 12 }, (_, i) => {

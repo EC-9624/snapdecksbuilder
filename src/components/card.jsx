@@ -8,7 +8,7 @@ const Card = (props) => {
   return (
     <div className="w-40 h-64 mb-10 flex-col ">
       <img
-        className={className}
+        className={`cursor-pointer ${className}`}
         src={art}
         alt=""
         loading="lazy"
