@@ -11,15 +11,13 @@ const builder = () => {
   const [cards, setCards] = useState(allCardsdata);
   //filter cards state
   const [filtered, setFiltered] = useState(cards);
-  //state of card in deck
+  //state of cards in deck
   const [isIndeck, setIsIndeck] = useState([]);
 
   //return Search query string
   const handleSearchTermChange = (searchTerm) => {
     const searchList = cards.filter((card) => {
-      const searchMatches = card.cname
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
+      const searchMatches = card.cname.toLowerCase().includes(searchTerm.toLowerCase());
 
       return searchMatches;
     });
@@ -27,12 +25,10 @@ const builder = () => {
     return searchList;
   };
 
-  //return Ability query string
+  //return Name query string
   const handleFilterChange = (filterTerm) => {
     const filteredList = cards.filter((card) => {
-      const filterMatches = card.ability
-        .toLowerCase()
-        .includes(filterTerm.toLowerCase());
+      const filterMatches = card.ability.toLowerCase().includes(filterTerm.toLowerCase());
 
       return filterMatches;
     });
@@ -43,9 +39,7 @@ const builder = () => {
   // return Source query String
   const handleSourceChange = (sourceTerm) => {
     const filteredSource = cards.filter((card) => {
-      const sourceMatches = card.source_slug
-        .toLowerCase()
-        .includes(sourceTerm.toLowerCase());
+      const sourceMatches = card.source_slug.toLowerCase().includes(sourceTerm.toLowerCase());
       return sourceMatches;
     });
     return filteredSource;
@@ -77,13 +71,7 @@ const builder = () => {
   };
 
   //take input here and pass it  setFiltered through the function
-  const updateFilteredState = (
-    searchTerm,
-    filterTerm,
-    sourceTerm,
-    cost,
-    power
-  ) => {
+  const updateFilteredState = (searchTerm, filterTerm, sourceTerm, cost, power) => {
     const searchList = handleSearchTermChange(searchTerm);
     const filteredList = handleFilterChange(filterTerm);
     const sourceList = handleSourceChange(sourceTerm);
@@ -92,11 +80,7 @@ const builder = () => {
 
     // filtering
     const updatedFilteredCards = searchList.filter(
-      (card) =>
-        filteredList.includes(card) &&
-        sourceList.includes(card) &&
-        costList.includes(card) &&
-        powerList.includes(card)
+      (card) => filteredList.includes(card) && sourceList.includes(card) && costList.includes(card) && powerList.includes(card)
     );
 
     //update state
@@ -105,26 +89,16 @@ const builder = () => {
 
   //toggle card inDeck
   const handleindeckToggle = (cid) => {
-    let updatedCards = cards.map((card) =>
-      card.cid === cid ? { ...card, inDeck: !card.inDeck } : card
-    );
+    let updatedCards = cards.map((card) => (card.cid === cid ? { ...card, inDeck: !card.inDeck } : card));
 
-    let updatedFilteredCards = filtered.map((card) =>
-      card.cid === cid ? { ...card, inDeck: !card.inDeck } : card
-    );
+    let updatedFilteredCards = filtered.map((card) => (card.cid === cid ? { ...card, inDeck: !card.inDeck } : card));
 
     // If the length of isIndeck is greater than or equal to 12
     if (isIndeck.length >= 12) {
-      updatedCards = updatedCards.map((card) =>
-        card.cid === cid && card.inDeck
-          ? { ...card, inDeck: !card.inDeck }
-          : card
-      );
+      updatedCards = updatedCards.map((card) => (card.cid === cid && card.inDeck ? { ...card, inDeck: !card.inDeck } : card));
 
       updatedFilteredCards = updatedFilteredCards.map((card) =>
-        card.cid === cid && card.inDeck
-          ? { ...card, inDeck: !card.inDeck }
-          : card
+        card.cid === cid && card.inDeck ? { ...card, inDeck: !card.inDeck } : card
       );
     }
     //update both to sync the state
@@ -144,6 +118,7 @@ const builder = () => {
     setFiltered(updatedFilteredCards);
     setIsIndeck([]);
   };
+
   //render Deck
   function DeckBuilder() {
     useEffect(() => {
@@ -152,14 +127,10 @@ const builder = () => {
     }, [cards]);
 
     return (
-      <div className=" p-4 grid grid-cols-6 grid-rows-2 gap-2  border-2 border-gray-500 bg-slate-900 rounded-lg mb-4 max-w-fit items-center justify-center">
+      <div className=' p-4 grid grid-cols-6 grid-rows-2 gap-2  border-2 border-zinc-400 bg-slate-900 rounded-lg mb-4 max-w-fit items-center justify-center'>
         {Array.from({ length: 12 }, (_, i) => {
           const card = isIndeck[i];
-          return card ? (
-            <DeckCard key={card.cid} props={card} />
-          ) : (
-            <Emptycard key={i} />
-          );
+          return card ? <DeckCard key={card.cid} props={card} /> : <Emptycard key={i} />;
         })}
       </div>
     );
@@ -184,28 +155,24 @@ const builder = () => {
     <>
       <Header></Header>
 
-      <div className="bg-slate-800 min-w-full min-h-screen flex flex-col justify-start items-center ">
-        <div className="p-5">
+      <div className='bg-slate-800 min-w-full min-h-screen flex flex-col justify-start items-center '>
+        <div className='p-5'>
           {/* deckBuilder components */}
           {DeckBuilder()}
-          <div className="flex gap-2">
+          <div className='flex gap-2'>
             {/* deckCode Btn */}
             <button
-              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded inline-flex items-center"
+              className='bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded inline-flex items-center'
               onClick={() => navigator.clipboard.writeText(generateDeckCode())}
             >
-              <svg
-                className="fill-current w-4 h-4 mr-2"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+              <svg className='fill-current w-4 h-4 mr-2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'>
+                <path d='M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z' />
               </svg>
               <span>COPPY</span>
             </button>
             {/* ResetBtn */}
             <button
-              className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
+              className='bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded'
               onClick={() => {
                 console.log("ResetBtn Clicked");
                 handleReset();
@@ -217,16 +184,10 @@ const builder = () => {
         </div>
 
         <Search updateFilteredState={updateFilteredState}></Search>
-        <div className="mt-4">
-          <div className=" grid grid-cols-6 h-auto w-auto mr-2 max-w-fit">
+        <div className='mt-4'>
+          <div className=' grid grid-cols-6 h-auto w-auto mr-2 max-w-fit'>
             {filtered.map((c) => {
-              return (
-                <BuilderCard
-                  props={c}
-                  key={c.cid}
-                  toggle={handleindeckToggle}
-                ></BuilderCard>
-              );
+              return <BuilderCard props={c} key={c.cid} toggle={handleindeckToggle}></BuilderCard>;
             })}
           </div>
         </div>

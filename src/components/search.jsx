@@ -78,7 +78,7 @@ const Search = (props) => {
   const power = [null, 0, 1, 2, 3, 4, 5, 6, 7];
 
   return (
-    <div className="bg-slate-900 text-white text-xl font-bold flex flex-col border-2 border-zinc-400 p-8 mb w-fit rounded-xl mb-8">
+    <div className="bg-slate-900 text-white text-xl font-bold flex flex-col border-2 border-zinc-400 px-14 py-8 mb w-fit rounded-xl mb-8">
       <div className="flex gap-5">
         <div className="mb-2">
           <h1 className="mb-2">Name</h1>
@@ -142,7 +142,7 @@ const Search = (props) => {
                   onClick={() => handleCostFilterClick(item)}
                   key={i}
                 >
-                  {item === null ? "All" : item}
+                  {item === null ? "All" : item && item == 6 ? "6+" : item}
                 </button>
               );
             })}
