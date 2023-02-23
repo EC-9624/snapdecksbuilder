@@ -6,10 +6,12 @@ const Search = (props) => {
   const [sourceFilter, setSourceFilter] = useState("");
   const [costFilter, setCostFilter] = useState(null);
   const [powerFilter, setPowerFilter] = useState(null);
+  const [selectedcostButton, setSelectedcostButton] = useState(null);
 
   const handleSearchInputChange = (event) => {
     const newSearchTerm = event.target.value;
     setSearchTerm(newSearchTerm);
+
     props.updateFilteredState(
       newSearchTerm,
       filterValue,
@@ -21,6 +23,7 @@ const Search = (props) => {
   const handleFilterInputChange = (event) => {
     const newFilterTerm = event.target.value;
     setFilterValue(newFilterTerm);
+
     props.updateFilteredState(
       searchTerm,
       newFilterTerm,
@@ -33,6 +36,7 @@ const Search = (props) => {
   const handleSourceInputChange = (event) => {
     const newSource = event.target.value;
     setSourceFilter(newSource);
+
     props.updateFilteredState(
       searchTerm,
       filterValue,
@@ -44,6 +48,7 @@ const Search = (props) => {
 
   const handleCostFilterClick = (cost) => {
     setCostFilter(cost);
+    setSelectedcostButton(cost);
     props.updateFilteredState(
       searchTerm,
       filterValue,
@@ -63,31 +68,32 @@ const Search = (props) => {
       power
     );
   };
-
-  const cost = [0, 1, 2, 3, 4, 5, 6];
-  const power = [0, 1, 2, 3, 4, 5, 6, 7];
-
+  const cost = [null, 0, 1, 2, 3, 4, 5, 6];
+  const power = [null, 0, 1, 2, 3, 4, 5, 6, 7];
+  console.log("costfilter", costFilter);
   return (
-    <div className="text-white text-xl font-bold flex flex-col border-2 p-4 w-fit rounded">
-      <div className="flex gap-10">
-        <div className="text-orange-500">
-          <h1>Keyword</h1>
+    <div className="bg-slate-800 text-white text-xl font-bold flex flex-col border-2 p-8 mb w-fit rounded-xl mb-8">
+      <div className="flex gap-5">
+        <div className="mb-2">
+          <h1 className="mb-2">Name</h1>
+
           <input
             type="search"
             name="search-form"
+            className="bg-gray-600 pl-2 placeholder-white placeholder-opacity-75"
             placeholder="Search..."
             value={searchTerm}
             onChange={handleSearchInputChange}
           />
         </div>
 
-        <div className="text-orange-600">
-          <h1>Ability</h1>
+        <div className="mb-2">
+          <h1 className="mb-2">Ability</h1>
           <select
             name="ability"
             value={filterValue}
             onChange={handleFilterInputChange}
-            className="font-semibold"
+            className="font-semibold bg-gray-600 cursor-pointer"
           >
             <option value="">All</option>
             <option value="On Reveal">On Reveal</option>
@@ -98,13 +104,13 @@ const Search = (props) => {
           </select>
         </div>
 
-        <div className="text-orange-500 ">
-          <h1>Source</h1>
+        <div className="mb-2 ">
+          <h1 className="mb-2">Source</h1>
           <select
             name="source"
             value={sourceFilter}
             onChange={handleSourceInputChange}
-            className="font-semibold"
+            className="font-semibold bg-gray-600 cursor-pointer"
           >
             <option value="">All</option>
             <option value="starter-card">starter</option>
@@ -119,20 +125,19 @@ const Search = (props) => {
       <div className="flex gap-5">
         <div>
           <h1>Cost</h1>
-          <div className=" w-fit flex gap-2">
-            <button
-              className="bg-fuchsia-400 "
-              onClick={() => handleCostFilterClick()}
-            >
-              All
-            </button>
-            {cost.map((item) => {
+          <div className=" w-fit flex gap-1">
+            {cost.map((item, i) => {
               return (
                 <button
-                  className="bg-fuchsia-400 "
+                  className={
+                    selectedcostButton == item
+                      ? "bg-blue-400 border-2 rounded-full h-10 w-10"
+                      : "bg-gray-600 border-2 rounded-full h-10 w-10"
+                  }
                   onClick={() => handleCostFilterClick(item)}
+                  key={i}
                 >
-                  {item}
+                  {item === null ? "All" : item}
                 </button>
               );
             })}
@@ -141,21 +146,21 @@ const Search = (props) => {
 
         <div>
           <h1>Power</h1>
-          <div className=" w-fit flex gap-2">
-            <button
-              className="bg-red-500"
-              onClick={() => handlePowerFilterClick()}
-            >
-              All
-            </button>
-
-            {power.map((item) => {
+          <div className=" w-fit flex gap-1">
+            {power.map((item, i) => {
               return (
                 <button
-                  className="bg-red-500"
+                  className="bg-gray-600 border-2 rounded-md h-10 w-10"
                   onClick={() => handlePowerFilterClick(item)}
+                  key={i}
                 >
-                  {item == 0 ? "-1" : item}
+                  {item === null
+                    ? "All"
+                    : item && item == 0
+                    ? ">1"
+                    : item && item === 7
+                    ? "7+"
+                    : item}
                 </button>
               );
             })}

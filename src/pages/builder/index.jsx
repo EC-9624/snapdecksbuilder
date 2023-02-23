@@ -48,16 +48,19 @@ const builder = () => {
   };
 
   const handleCostFilter = (cost) => {
-    if (cost == null) return cards;
+    if (cost === null) {
+      console.log(cards);
+      return cards;
+    }
     const filteredCost = cards.filter((card) => {
       return cost >= 6 ? card.cost >= 6 : card.cost == cost;
     });
-    console.log(filteredCost);
+    console.log("filterdCost", filteredCost);
     return filteredCost;
   };
 
   const handlePowerFilter = (power) => {
-    if (power == null) return cards;
+    if (power === null) return cards;
     if (power <= 0) {
       return cards.filter((card) => {
         return card.power <= power;

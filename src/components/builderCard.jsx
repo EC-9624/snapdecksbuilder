@@ -5,7 +5,7 @@ const BuilderCard = (props) => {
   const { toggle } = props;
   const className = inDeck ? "grayscale" : "";
   return (
-    <div className="w-36 h-32 mb-10 flex-col ">
+    <div className="w-40 h-36 mb-10 flex-col cursor-pointer">
       <img
         src={art}
         alt=""
