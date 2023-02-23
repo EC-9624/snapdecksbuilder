@@ -23,6 +23,7 @@ const builder = () => {
 
       return searchMatches;
     });
+
     return searchList;
   };
 
@@ -32,10 +33,13 @@ const builder = () => {
       const filterMatches = card.ability
         .toLowerCase()
         .includes(filterTerm.toLowerCase());
+
       return filterMatches;
     });
+
     return filteredList;
   };
+
   // return Source query String
   const handleSourceChange = (sourceTerm) => {
     const filteredSource = cards.filter((card) => {
@@ -48,19 +52,18 @@ const builder = () => {
   };
 
   const handleCostFilter = (cost) => {
-    if (cost === null) {
-      console.log(cards);
+    if (cost == null) {
       return cards;
     }
     const filteredCost = cards.filter((card) => {
       return cost >= 6 ? card.cost >= 6 : card.cost == cost;
     });
-    console.log("filterdCost", filteredCost);
+
     return filteredCost;
   };
 
   const handlePowerFilter = (power) => {
-    if (power === null) return cards;
+    if (power == null) return cards;
     if (power <= 0) {
       return cards.filter((card) => {
         return card.power <= power;
@@ -69,7 +72,7 @@ const builder = () => {
     const filteredPower = cards.filter((card) => {
       return power >= 7 ? card.power >= 7 : card.power == power;
     });
-    console.log(filteredPower);
+
     return filteredPower;
   };
 
@@ -86,6 +89,7 @@ const builder = () => {
     const sourceList = handleSourceChange(sourceTerm);
     const costList = handleCostFilter(cost);
     const powerList = handlePowerFilter(power);
+
     // filtering
     const updatedFilteredCards = searchList.filter(
       (card) =>
@@ -148,7 +152,7 @@ const builder = () => {
     }, [cards]);
     //console.log(isIndeck);
     return (
-      <div className=" p-2 grid grid-cols-6 grid-rows-2 gap-2  border-4 border-gray-500 rounded-lg bg-black mb-4 max-w-fit items-center justify-center">
+      <div className=" p-4 grid grid-cols-6 grid-rows-2 gap-2  border-2 border-gray-500 bg-slate-900 rounded-lg mb-4 max-w-fit items-center justify-center">
         {Array.from({ length: 12 }, (_, i) => {
           const card = isIndeck[i];
           return card ? (

@@ -7,6 +7,7 @@ const Search = (props) => {
   const [costFilter, setCostFilter] = useState(null);
   const [powerFilter, setPowerFilter] = useState(null);
   const [selectedcostButton, setSelectedcostButton] = useState(null);
+  const [selectedPower, setSelectPower] = useState(null);
 
   const handleSearchInputChange = (event) => {
     const newSearchTerm = event.target.value;
@@ -22,6 +23,7 @@ const Search = (props) => {
 
   const handleFilterInputChange = (event) => {
     const newFilterTerm = event.target.value;
+
     setFilterValue(newFilterTerm);
 
     props.updateFilteredState(
@@ -49,6 +51,7 @@ const Search = (props) => {
   const handleCostFilterClick = (cost) => {
     setCostFilter(cost);
     setSelectedcostButton(cost);
+
     props.updateFilteredState(
       searchTerm,
       filterValue,
@@ -60,6 +63,8 @@ const Search = (props) => {
 
   const handlePowerFilterClick = (power) => {
     setPowerFilter(power);
+    setSelectPower(power);
+
     props.updateFilteredState(
       searchTerm,
       filterValue,
@@ -68,15 +73,15 @@ const Search = (props) => {
       power
     );
   };
+
   const cost = [null, 0, 1, 2, 3, 4, 5, 6];
   const power = [null, 0, 1, 2, 3, 4, 5, 6, 7];
-  console.log("costfilter", costFilter);
+
   return (
-    <div className="bg-slate-800 text-white text-xl font-bold flex flex-col border-2 p-8 mb w-fit rounded-xl mb-8">
+    <div className="bg-slate-900 text-white text-xl font-bold flex flex-col border-2 border-zinc-400 p-8 mb w-fit rounded-xl mb-8">
       <div className="flex gap-5">
         <div className="mb-2">
           <h1 className="mb-2">Name</h1>
-
           <input
             type="search"
             name="search-form"
@@ -150,7 +155,11 @@ const Search = (props) => {
             {power.map((item, i) => {
               return (
                 <button
-                  className="bg-gray-600 border-2 rounded-md h-10 w-10"
+                  className={
+                    selectedPower == item
+                      ? "bg-orange-400 border-2 rounded-md h-10 w-10"
+                      : "bg-gray-600 border-2 rounded-md h-10 w-10"
+                  } //"bg-gray-600 border-2 rounded-md h-10 w-10"
                   onClick={() => handlePowerFilterClick(item)}
                   key={i}
                 >
