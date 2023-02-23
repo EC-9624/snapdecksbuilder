@@ -8,19 +8,19 @@ export default function Home() {
   //cards state
   const [cards, setCards] = useState(allCardsdata);
 
-  const pool_1 = cards.filter((c) => c.source_slug === "pool-1");
+  const pool_1 = cards.filter((c) => c.source_slug === "pool-1" || c.source_slug === "collection-level");
   const pool_2 = cards.filter((c) => c.source_slug === "pool-2");
   const pool_3 = cards.filter((c) => c.source_slug === "pool-3");
   const pool_4 = cards.filter((c) => c.source_slug === "pool-4");
   const pool_5 = cards.filter((c) => c.source_slug === "pool-5");
   const starter = cards.filter((c) => c.source_slug === "starter-card");
 
-  const starter_len = cards.filter((c) => c.source_slug === "starter-card").length;
-  const pool_1_len = cards.filter((c) => c.source_slug === "pool-1").length;
-  const pool_2_len = cards.filter((c) => c.source_slug === "pool-2").length;
-  const pool_3_len = cards.filter((c) => c.source_slug === "pool-3").length;
-  const pool_4_len = cards.filter((c) => c.source_slug === "pool-4").length;
-  const pool_5_len = cards.filter((c) => c.source_slug === "pool-5").length;
+  const starter_len = starter.length;
+  const pool_1_len = pool_1.length;
+  const pool_2_len = pool_2.length;
+  const pool_3_len = pool_3.length;
+  const pool_4_len = pool_4.length;
+  const pool_5_len = pool_5.length;
 
   const [collectedstarter, setCollectedStarter] = useState(0);
   const [collectedpool1, setCollectedpool1] = useState(0);
