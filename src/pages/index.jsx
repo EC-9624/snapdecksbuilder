@@ -5,8 +5,6 @@ import React, { useState, useEffect } from "react";
 import CardsData from "./api/JsonCardsData";
 
 export default function Home() {
-  //cards state
-  const [cards, setCards] = useState(allCardsdata);
   // const [cards, setCards] = useState(() => {
   //   if (typeof window !== "undefined") {
   //     const storedCards = localStorage.getItem("cards");
@@ -15,9 +13,14 @@ export default function Home() {
   //   } else {
   //     return allCardsdata;
   //   }
+
   // });
 
   // Save cards to localStorage whenever it changes
+
+  //cards state
+  const [cards, setCards] = useState(allCardsdata);
+
   useEffect(() => {
     localStorage.setItem("cards", JSON.stringify(cards));
   }, [cards]);
@@ -183,4 +186,11 @@ const allCardsdata = CardsData.filter((c) => c.type === "Character").map(
   (c) => {
     return { ...c, collected: false };
   }
+);
+
+//summon
+console.log(
+  CardsData.filter((c) => c.source_slug === "").filter(
+    (c) => c.type === "Summon"
+  )
 );

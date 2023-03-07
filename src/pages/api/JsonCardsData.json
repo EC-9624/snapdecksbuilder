@@ -2082,8 +2082,8 @@
     "power": "0",
     "carddefid": "SilverSurfer",
     "uuid": "4kinbusbjcgmuuyism",
-    "source": "Series 5 Ultra Rare - Collection Level 486+ (Pool 5)",
-    "source_slug": "pool-5"
+    "source": "Series 4 Rare - Collection Level 486+ (Pool 4)",
+    "source_slug": "pool-4"
   },
   {
     "cid": "202",
@@ -2292,7 +2292,7 @@
     "power": "2",
     "carddefid": "SuperSkrull",
     "uuid": "7setqhbwhp1w1yaabvo5",
-    "source": "Series 5 Ultra Rare - Collection Level 486+ (Pool 5)",
+    "source": "Series 4 Rare - Collection Level 486+ (Pool 4)",
     "source_slug": "pool-4"
   },
   {
@@ -2460,8 +2460,8 @@
     "power": "8",
     "carddefid": "Sentry",
     "uuid": "7fgt9r8fhcxvrkhnoch",
-    "source": "Series 5 Ultra Rare - Collection Level 486+ (Pool 5)",
-    "source_slug": "pool-5"
+    "source": "Series 4 Rare - Collection Level 486+ (Pool 4)",
+    "source_slug": "pool-4"
   },
   {
     "cid": "290",
@@ -2537,11 +2537,11 @@
     "cid": "215",
     "cname": "Sandman",
     "type": "Character",
-    "art": "https://marvelsnapzone.com/wp-content/themes/blocksy-child/assets/media/cards/sandman.webp?v=25",
+    "art": "https://marvelsnapzone.com/wp-content/themes/blocksy-child/assets/media/cards/sandman.webp?v=45",
     "url": "https://marvelsnapzone.com/cards/sandman",
     "ability": "Ongoing: Players can only play 1 card a turn.",
-    "cost": "4",
-    "power": "1",
+    "cost": "5",
+    "power": "5",
     "carddefid": "Sandman",
     "uuid": "arvxk6xdduuy1kjtxfp",
     "source": "Collection Level 222-474 (Pool 2)",
@@ -2558,8 +2558,8 @@
     "power": "1",
     "carddefid": "Darkhawk",
     "uuid": "ltoxsuwbh71ayvgynuol",
-    "source": "Series 5 Ultra Rare - Collection Level 486+ (Pool 5)",
-    "source_slug": "pool-5"
+    "source": "Series 4 Rare - Collection Level 486+ (Pool 4)",
+    "source_slug": "pool-4"
   },
   {
     "cid": "279",
@@ -2628,7 +2628,7 @@
     "power": "2",
     "carddefid": "Shuri",
     "uuid": "nbbbie0z9ywfloojzl8m",
-    "source": "Series 5 Ultra Rare - Collection Level 486+ (Pool 5)",
+    "source": "Series 4 Rare - Collection Level 486+ (Pool 4)",
     "source_slug": "pool-4"
   },
   {
@@ -2740,8 +2740,8 @@
     "power": "0",
     "carddefid": "Kang",
     "uuid": "656oafwphkm7hm4wgrc",
-    "source": "",
-    "source_slug": ""
+    "source": "Series 5 Ultra Rare - Collection Level 486+ (Pool 5)",
+    "source_slug": "pool-5"
   },
   {
     "cid": "298",
@@ -3020,7 +3020,7 @@
     "power": "3",
     "carddefid": "Valkyrie",
     "uuid": "jogq87savz3yob1o7thc",
-    "source": "Series 5 Ultra Rare - Collection Level 486+ (Pool 5)",
+    "source": "Series 4 Rare - Collection Level 486+ (Pool 4)",
     "source_slug": "pool-4"
   },
   {
@@ -3062,7 +3062,7 @@
     "power": "4",
     "carddefid": "BlackPanther",
     "uuid": "nbbbie0z9ywfloojzl8m",
-    "source": "Series 5 Ultra Rare - Collection Level 486+ (Pool 5)",
+    "source": "Series 4 Rare - Collection Level 486+ (Pool 4)",
     "source_slug": "pool-4"
   },
   {
@@ -3377,11 +3377,11 @@
     "cid": "258",
     "cname": "Thanos",
     "type": "Character",
-    "art": "https://marvelsnapzone.com/wp-content/themes/blocksy-child/assets/media/cards/thanos.webp?v=25",
+    "art": "https://marvelsnapzone.com/wp-content/themes/blocksy-child/assets/media/cards/thanos.webp?v=45",
     "url": "https://marvelsnapzone.com/cards/thanos",
     "ability": "At the start of the game, shuffle the six Infinity Stones into your deck.",
     "cost": "6",
-    "power": "8",
+    "power": "11",
     "carddefid": "Thanos",
     "uuid": "zjfjkuhugqpzves71pqe",
     "source": "Series 5 Ultra Rare - Collection Level 486+ (Pool 5)",
@@ -3552,8 +3552,8 @@
     "power": "0",
     "carddefid": "Knull",
     "uuid": "emwt5evrj9imopytadq",
-    "source": "Series 5 Ultra Rare - Collection Level 486+ (Pool 5)",
-    "source_slug": "pool-5"
+    "source": "Series 4 Rare - Collection Level 486+ (Pool 4)",
+    "source_slug": "pool-4"
   },
   {
     "cid": "57",
