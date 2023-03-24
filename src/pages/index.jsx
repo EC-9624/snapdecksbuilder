@@ -14,6 +14,7 @@ export default function Home() {
   const pool_4 = cards.filter((c) => c.source_slug === "pool-4");
   const pool_5 = cards.filter((c) => c.source_slug === "pool-5");
   const starter = cards.filter((c) => c.source_slug === "starter-card");
+  const seasonPass = cards.filter((c) => c.source_slug === "season-pass");
 
   const starter_len = starter.length;
   const pool_1_len = pool_1.length;
@@ -21,6 +22,7 @@ export default function Home() {
   const pool_3_len = pool_3.length;
   const pool_4_len = pool_4.length;
   const pool_5_len = pool_5.length;
+  const seasonPass_len = seasonPass.length;
 
   const [collectedstarter, setCollectedStarter] = useState(0);
   const [collectedpool1, setCollectedpool1] = useState(0);
@@ -28,6 +30,7 @@ export default function Home() {
   const [collectedpool3, setCollectedpool3] = useState(0);
   const [collectedpool4, setCollectedpool4] = useState(0);
   const [collectedpool5, setCollectedpool5] = useState(0);
+  const [collectedSeasonPass, setcollectedSeasonPass] = useState(0);
 
   //function to change collected prop
   function toggle(cid) {
@@ -56,6 +59,7 @@ export default function Home() {
     setCollectedpool3(pool_3.filter((card) => card.collected).length);
     setCollectedpool4(pool_4.filter((card) => card.collected).length);
     setCollectedpool5(pool_5.filter((card) => card.collected).length);
+    setcollectedSeasonPass(seasonPass.filter((card) => card.collected).length);
   }, [cards]);
 
   //add all btn
@@ -151,6 +155,18 @@ export default function Home() {
           </div>
           <div className='cardContainer flex flex-wrap place-content-start  h-full w-full pl-10'>
             {pool_5.map((c) => (
+              <Card props={c} key={c.cid} toggle={toggle}></Card>
+            ))}
+          </div>
+
+          <div className='flex items-center justify-start pb-3 '>
+            <h2 className='text-white text-5xl font-bold m-4 pl-12'>
+              Season Pass Cards &#40;{collectedSeasonPass}/{seasonPass_len}&#41;
+            </h2>
+            {addBtn(seasonPass)}
+          </div>
+          <div className='cardContainer flex flex-wrap place-content-start  h-full w-full pl-10'>
+            {seasonPass.map((c) => (
               <Card props={c} key={c.cid} toggle={toggle}></Card>
             ))}
           </div>
