@@ -7,7 +7,7 @@ import Search from "@/components/search";
 import Emptycard from "@/components/emptycard";
 import Head from "next/head";
 
-const builder = () => {
+const Builder = () => {
   //allcards state
   const [cards, setCards] = useState(allCardsdata);
   //filter cards state
@@ -242,7 +242,7 @@ const builder = () => {
   );
 };
 
-export default builder;
+export default Builder;
 
 //create filtered list
 const allCardsdata = CardsData.filter((c) => c.type === "Character")

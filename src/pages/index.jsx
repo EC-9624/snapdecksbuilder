@@ -180,13 +180,13 @@ export default function Home() {
             ))}
           </div>
 
-          <div className='flex items-center justify-start pb-3 '>
-            <h2 className='text-white text-5xl font-bold m-4 pl-12'>
+          <div className="flex items-center justify-start pb-3 ">
+            <h2 className="text-white text-5xl font-bold m-4 pl-12">
               Season Pass Cards &#40;{collectedSeasonPass}/{seasonPass_len}&#41;
             </h2>
             {addBtn(seasonPass)}
           </div>
-          <div className='cardContainer flex flex-wrap place-content-start  h-full w-full pl-10'>
+          <div className="cardContainer flex flex-wrap place-content-start  h-full w-full pl-10">
             {seasonPass.map((c) => (
               <Card props={c} key={c.cid} toggle={toggle}></Card>
             ))}
