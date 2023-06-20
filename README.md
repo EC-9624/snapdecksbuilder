@@ -1,5 +1,3 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Marvel Snap DeckBuilder
 
 ![screen1](https://github.com/EC-9624/snapdecksbuilder/assets/71120764/a0305470-2325-4a01-a9c5-af92ea8585e9)
