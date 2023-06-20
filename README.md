@@ -2,8 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Marvel Snap DeckBuilder
 
-[alt text]([http://url/to/img.png](https://github.com/EC-9624/snapdecksbuilder/blob/main/public/screen1.png))
-[alt text]([http://url/to/img.png](https://github.com/EC-9624/snapdecksbuilder/blob/main/public/screen2.png))
+[alt text]([http://url/to/img.png](https://github.com/EC-9624/snapdecksbuilder/blob/main/public/screen1.png)
+[alt text]([http://url/to/img.png](https://github.com/EC-9624/snapdecksbuilder/blob/main/public/screen2.png)
 live Projects https://snapdecksbuilder.vercel.app
 A Web-based tool for Marvel Snap enabling players to build and import decks directly into the game
 All of the data belong to https://marvelsnapzone.com/ the data migh not me updated to the current version of the game
