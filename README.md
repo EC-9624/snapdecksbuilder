@@ -1,7 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Marvel Snap DeckBuilder
-live Projects [https://snapdecksbuilder.vercel.app/](https://snapdecksbuilder.vercel.app/)  
+live Projects https://snapdecksbuilder.vercel.app
 A Web-based tool for Marvel Snap enabling players to build and import decks directly into the game
 All of the data belong to https://marvelsnapzone.com/ the data migh not me updated to the current version of the game
 this project is for educational purpose only
