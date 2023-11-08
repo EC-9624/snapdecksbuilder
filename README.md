@@ -10,14 +10,14 @@
 **A Web-based tool for Marvel Snap enabling players to build and import decks directly into the game**
 All of the data belong to [https://marvelsnapzone.com/](https://marvelsnapzone.com/) *the data might not be updated to the current version of the game; this project is for educational purposes only*
 
-First, run the development server:
+First, install all the dependency and run the development server:
 
 ```bash
-npm run dev
+npm install  && npm run dev
 # or
-yarn dev
+yarn install && yarn dev
 # or
-pnpm dev
+pnpm install && pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
