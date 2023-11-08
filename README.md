@@ -7,9 +7,8 @@
 
 
 
-A Web-based tool for Marvel Snap enabling players to build and import decks directly into the game
-All of the data belong to https://marvelsnapzone.com/ the data migh not me updated to the current version of the game
-this project is for educational purpose only
+**A Web-based tool for Marvel Snap enabling players to build and import decks directly into the game**
+All of the data belong to [https://marvelsnapzone.com/](https://marvelsnapzone.com/) *the data might not be updated to the current version of the game; this project is for educational purposes only*
 
 First, run the development server:
 
